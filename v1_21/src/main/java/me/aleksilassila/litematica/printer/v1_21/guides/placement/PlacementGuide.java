@@ -72,7 +72,7 @@ abstract public class PlacementGuide extends Guide {
             return false;
 
         ItemPlacementContext ctx = getPlacementContext(player);
-        if (ctx == null || !ctx.canPlace()) return false;
+        if (ctx == null || (!LitematicaMixinMod.PRINT_IN_AIR.getBooleanValue() && !ctx.canPlace())) return false;
 //        if (!state.currentState.getMaterial().isReplaceable()) return false;
         if (!LitematicaMixinMod.REPLACE_FLUIDS_SOURCE_BLOCKS.getBooleanValue()
                 && getProperty(state.currentState, FluidBlock.LEVEL).orElse(1) == 0)
