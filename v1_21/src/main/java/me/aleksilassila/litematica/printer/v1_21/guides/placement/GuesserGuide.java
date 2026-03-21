@@ -56,6 +56,7 @@ public class GuesserGuide extends GeneralPlacementGuide {
         int slot = getRequiredItemStackSlot(player);
 
         if (slot == -1) return null;
+        boolean printInAir = LitematicaMixinMod.PRINT_IN_AIR.getBooleanValue();
 
         for (Direction lookDirection : directionsToTry) {
             for (Direction side : directionsToTry) {
@@ -63,9 +64,11 @@ public class GuesserGuide extends GeneralPlacementGuide {
                 BlockState neighborState = state.world.getBlockState(neighborPos);
                 boolean requiresShift = getRequiresExplicitShift() || isInteractive(neighborState.getBlock());
 
-                if (!canBeClicked(state.world, neighborPos) || // Handle unclickable grass for example
-                        neighborState.isReplaceable())
-                    continue;
+                if (!printInAir) {
+                    if (!canBeClicked(state.world, neighborPos) || // Handle unclickable grass for example
+                            neighborState.isReplaceable())
+                        continue;
+                }
 
                 Vec3d hitVec = Vec3d.ofCenter(state.blockPos)
                         .add(Vec3d.of(side.getVector()).multiply(0.5));
@@ -74,7 +77,8 @@ public class GuesserGuide extends GeneralPlacementGuide {
                     Vec3d multiplier = Vec3d.of(side.getVector());
                     multiplier = new Vec3d(multiplier.x == 0 ? 1 : 0, multiplier.y == 0 ? 1 : 0, multiplier.z == 0 ? 1 : 0);
 
-                    BlockHitResult hitResult = new BlockHitResult(hitVec.add(hitVecToTry.multiply(multiplier)), side.getOpposite(), neighborPos, false);
+                    BlockPos hitPos = printInAir ? state.blockPos : neighborPos;
+                    BlockHitResult hitResult = new BlockHitResult(hitVec.add(hitVecToTry.multiply(multiplier)), side.getOpposite(), hitPos, printInAir);
                     PrinterPlacementContext context = new PrinterPlacementContext(player, hitResult, requiredItem, slot, lookDirection, requiresShift);
                     BlockState result = getRequiredItemAsBlock(player)
                             .orElse(targetState.getBlock())
