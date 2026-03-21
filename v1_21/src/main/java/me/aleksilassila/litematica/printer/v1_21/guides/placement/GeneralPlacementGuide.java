@@ -47,7 +47,7 @@ public class GeneralPlacementGuide extends PlacementGuide {
     }
 
     private Optional<Direction> getValidSide(SchematicBlockState state) {
-        boolean printInAir = false; // LitematicaMixinMod.PRINT_IN_AIR.getBooleanValue();
+        boolean printInAir = LitematicaMixinMod.PRINT_IN_AIR.getBooleanValue();
 
         List<Direction> sides = getPossibleSides();
 
