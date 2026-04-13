@@ -9,6 +9,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
 
+import me.aleksilassila.litematica.printer.v1_21.LitematicaMixinMod;
 import me.aleksilassila.litematica.printer.v1_21.SchematicBlockState;
 import me.aleksilassila.litematica.printer.v1_21.implementation.PrinterPlacementContext;
 
