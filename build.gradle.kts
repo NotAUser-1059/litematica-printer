@@ -17,6 +17,7 @@ val archives_base_name: String by project
 val mod_version: String by project
 
 java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     withSourcesJar()
 
     sourceCompatibility = JavaVersion.VERSION_21

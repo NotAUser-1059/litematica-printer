@@ -3,8 +3,11 @@ plugins {
     id("maven-publish")
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_21
-java.targetCompatibility = JavaVersion.VERSION_21
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 val archives_base_name: String by project
 val minecraft_version: String by project
