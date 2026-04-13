@@ -84,7 +84,7 @@ public class Printer {
                     BlockPos blockPos = player.getBlockPos().north(x).west(z).up(y);
 
                     if (!DataManager.getRenderLayerRange().isPositionWithinRange(blockPos)) continue;
-                    if (this.player.getEyePos().squaredDistanceTo(Vec3d.ofCenter(blockPos)) > maxReachSquared) {
+                    if (this.player.getPos().add(0, this.player.getEyeHeight(this.player.getPose()), 0).squaredDistanceTo(Vec3d.ofCenter(blockPos)) > maxReachSquared) {
                         continue;
                     }
 
@@ -96,7 +96,7 @@ public class Printer {
         return positions.stream()
                 .filter(p -> {
                     Vec3d vec = Vec3d.ofCenter(p);
-                    return this.player.getPos().squaredDistanceTo(vec) > 1 && this.player.getEyePos().squaredDistanceTo(vec) > 1;
+                    return this.player.getPos().squaredDistanceTo(vec) > 1 && this.player.getPos().add(0, this.player.getEyeHeight(this.player.getPose()), 0).squaredDistanceTo(vec) > 1;
                 })
                 .sorted((a, b) -> {
                     double aDistance = this.player.getPos().squaredDistanceTo(Vec3d.ofCenter(a));
