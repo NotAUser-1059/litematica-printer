@@ -23,7 +23,7 @@ public class PlayerMoveC2SPacketMixin {
         } else return yaw;
     }
 
-    @ModifyVariable(method = "<init>(DDDFFZZZ)V", at = @At("HEAD"), ordinal = 1)
+    @ModifyVariable(method = "<init>(DDDFFZZZZ)V", at = @At("HEAD"), ordinal = 1)
     private static float modifyLookPitch(float pitch) {
         Printer printer = LitematicaMixinMod.printer;
         if (printer == null) return pitch;
