@@ -36,7 +36,7 @@ abstract public class PlacementGuide extends Guide {
     }
 
     protected ItemStack getBlockItem(BlockState state) {
-        return state.getBlock().getPickStack(this.state.world, this.state.blockPos, state, true);
+        return new net.minecraft.item.ItemStack(state.getBlock().asItem());
     }
 
     protected Optional<Block> getRequiredItemAsBlock(ClientPlayerEntity player) {
