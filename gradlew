@@ -151,7 +151,7 @@ if [ -n "$JAVA_MAJOR" ] && [ "$JAVA_MAJOR" -gt 21 ] 2>/dev/null; then
     die "ERROR: Detected Java ${JAVA_MAJOR}. This project must run Gradle with Java 21.
 
 Please set JAVA_HOME to a Java 21 installation and rerun, for example:
-  JAVA_HOME=/path/to/jdk-21 ./gradlew v1_21:build"
+  JAVA_HOME=/usr/lib/jvm/java-21 ./gradlew build"
 fi
 
 # Increase the maximum file descriptors if we can.
