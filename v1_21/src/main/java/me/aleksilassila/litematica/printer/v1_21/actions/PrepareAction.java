@@ -78,7 +78,7 @@ public class PrepareAction extends Action {
                 if (PlayerInventory.isValidHotbarIndex(slot)) {
                     inventory.setSelectedSlot(slot);
                 } else {
-                    client.interactionManager.pickBlock(slot);
+                    client.interactionManager.pickFromInventory(slot);
                 }
             }
         }
