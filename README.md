@@ -13,6 +13,7 @@ allows players to build big structures more quickly by automatically placing the
 ## Notice
 
 This is a fork made mainly for personal use, meaning I will update it as I find needed. It is not reccomended to use this fork unless it is either your only option or you are prepaired for possible issues. (For simplicity I've kept most things in this fork very similar to the original printer addon)
+This fork has used AI for a variety of things to speed up development, but everything has been manually checked before pushed.
 
 ## Issues
 
