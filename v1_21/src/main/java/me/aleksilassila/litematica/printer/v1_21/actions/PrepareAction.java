@@ -10,6 +10,7 @@ import net.minecraft.network.packet.c2s.play.PlayerInputC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.screen.slot.SlotActionType; // <-- required import
 
 public class PrepareAction extends Action {
 //    public final Direction lookDirection;
@@ -78,7 +79,13 @@ public class PrepareAction extends Action {
                 if (PlayerInventory.isValidHotbarIndex(slot)) {
                     inventory.setSelectedSlot(slot);
                 } else {
-                    client.interactionManager.pickFromInventory(slot);
+                    client.interactionManager.clickSlot(
+                            player.currentScreenHandler.syncId,
+                            slot,
+                            inventory.getSelectedSlot(),
+                            SlotActionType.SWAP,
+                            player
+                    );
                 }
             }
         }
