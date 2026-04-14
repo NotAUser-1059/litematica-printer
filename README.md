@@ -12,7 +12,7 @@ allows players to build big structures more quickly by automatically placing the
 
 ## Notice
 
-This is a fork made mainly for personal use, meaning I will update it as I find needed. It is not reccomended to use this fork unless it is either your only option or you are prepaired for possible issues. (For simplicity I've kept most things in this fork very similar to the original printer addon)
+This is a fork made mainly for personal use, meaning I will update it as I find needed. It is not reccomended to use this fork unless it is either your only option or you are prepaired for possible issues. (For simplicity I've kept most things in this fork very similar to the original printer addon).
 This fork has used AI for a variety of things to speed up development, but everything has been manually checked before pushed.
 
 ## Issues
@@ -37,7 +37,6 @@ To make fixing bugs easier, include the following information in your issue:
 Currently, the following features are still broken or missing:
 
 - Placing liquids (printing **in** liquids works though)
-- Printing without support directly in air (printInAir)
 - Current algorithm for placing rails isn't perfect,
   sometimes it can't place all the rails (to avoid placing anything incorrectly).
 - Legit mode? (for anticheats)
