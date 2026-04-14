@@ -19,6 +19,10 @@ val litematica_version: String by project
 
 val mod_version: String by project
 
+base {
+    archivesName.set("Litematica-Printer-${minecraft_version}")
+}
+
 dependencies {
 //    implementation(project(":common"))
     minecraft("com.mojang:minecraft:${minecraft_version}")

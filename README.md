@@ -43,13 +43,13 @@ Currently, the following features are still broken or missing:
 
 ## Building and Contributing
 
-> Build requirement: use Java 21 (for example: `JAVA_HOME=/path/to/jdk-21 ./gradlew v1_21:build`).
+> Build requirement: use Java 21 (for example: `JAVA_HOME=/usr/lib/jvm/java-21 ./gradlew build`).
 
 Useful gradle tasks:
 
 - `v1_21:syncImplementations`
     - Copy common code from `v1_21` to the other version implementations
-- `v1_21:build`
+- `build`
     - Build the prioritized latest implementation
 - `v1_21:runClient`
     - Start the 1.21 development client
