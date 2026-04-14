@@ -27,9 +27,9 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${loader_version}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
-    // Litematica and Malilib dependencies from https://github.com/sakura-ryoko/litematica/tree/pre-rewrite/fabric/1.21
-	modImplementation("com.github.sakura-ryoko:malilib:${malilib_id}")
-	modImplementation("com.github.sakura-ryoko:litematica:${litematica_version}")
+    // Litematica and Malilib dependencies from Modrinth
+	modImplementation("maven.modrinth:malilib:${malilib_id}")
+	modImplementation("maven.modrinth:litematica:${litematica_version}")
 }
 
 repositories {
