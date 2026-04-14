@@ -38,7 +38,7 @@ public class PrepareAction extends Action {
         Direction lookDirection = context.lookDirection;
 
         if (lookDirection != null && lookDirection.getAxis().isHorizontal()) {
-            this.yaw = lookDirection.asRotation();
+            this.yaw = lookDirection.getPositiveHorizontalDegrees();
         } else {
             this.modifyYaw = false;
         }
