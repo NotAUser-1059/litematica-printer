@@ -33,9 +33,11 @@ dependencies {
 }
 
 repositories {
+    maven("https://maven.fabricmc.net/")
     maven("https://masa.dy.fi/maven")
     maven("https://www.cursemaven.com")
-	maven("https://jitpack.io")
+    maven("https://jitpack.io")
+    maven("https://api.modrinth.com/maven")
 }
 
 // Process resources
