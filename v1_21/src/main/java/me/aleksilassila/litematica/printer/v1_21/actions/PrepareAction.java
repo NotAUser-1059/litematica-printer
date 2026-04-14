@@ -1,14 +1,15 @@
 package me.aleksilassila.litematica.printer.v1_21.actions;
 
 import me.aleksilassila.litematica.printer.v1_21.implementation.PrinterPlacementContext;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.Input;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerInputC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.Hand;
 
 public class PrepareAction extends Action {
 //    public final Direction lookDirection;
@@ -71,13 +72,13 @@ public class PrepareAction extends Action {
 
             // This thing is straight from MinecraftClient#doItemPick()
             if (player.getAbilities().creativeMode) {
-                inventory.addPickBlock(itemStack);
-                client.interactionManager.clickCreativeStack(player.getStackInHand(Hand.MAIN_HAND), 36 + inventory.selectedSlot);
+                inventory.swapStackWithHotbar(itemStack);
+                client.interactionManager.clickCreativeStack(player.getStackInHand(Hand.MAIN_HAND), 36 + inventory.getSelectedSlot());
             } else if (slot != -1) {
                 if (PlayerInventory.isValidHotbarIndex(slot)) {
-                    inventory.selectedSlot = slot;
+                    inventory.setSelectedSlot(slot);
                 } else {
-                    client.interactionManager.pickFromInventory(slot);
+                    client.interactionManager.pickItem(slot);
                 }
             }
         }
@@ -86,18 +87,12 @@ public class PrepareAction extends Action {
             float yaw = modifyYaw ? this.yaw : player.getYaw();
             float pitch = modifyPitch ? this.pitch : player.getPitch();
 
-            PlayerMoveC2SPacket packet = new PlayerMoveC2SPacket.Full(player.getX(), player.getY(), player.getZ(), yaw, pitch, player.isOnGround());
+            PlayerMoveC2SPacket packet = new PlayerMoveC2SPacket.Full(player.getX(), player.getY(), player.getZ(), yaw, pitch, player.isOnGround(), false);
 
             player.networkHandler.sendPacket(packet);
         }
 
-        if (context.shouldSneak) {
-            player.input.sneaking = true;
-            player.networkHandler.sendPacket(new ClientCommandC2SPacket(player, ClientCommandC2SPacket.Mode.PRESS_SHIFT_KEY));
-        } else {
-            player.input.sneaking = false;
-            player.networkHandler.sendPacket(new ClientCommandC2SPacket(player, ClientCommandC2SPacket.Mode.RELEASE_SHIFT_KEY));
-        }
+        player.networkHandler.sendPacket(new PlayerInputC2SPacket(new Input(false, false, false, false, false, context.shouldSneak, false)));
     }
 
     @Override
