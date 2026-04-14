@@ -4,7 +4,7 @@ import me.aleksilassila.litematica.printer.v1_21.implementation.PrinterPlacement
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.Input;
+import net.minecraft.util.PlayerInput;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.c2s.play.PlayerInputC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
@@ -78,7 +78,7 @@ public class PrepareAction extends Action {
                 if (PlayerInventory.isValidHotbarIndex(slot)) {
                     inventory.setSelectedSlot(slot);
                 } else {
-                    client.interactionManager.pickItem(slot);
+                    client.interactionManager.pickBlock(slot);
                 }
             }
         }
@@ -92,7 +92,7 @@ public class PrepareAction extends Action {
             player.networkHandler.sendPacket(packet);
         }
 
-        player.networkHandler.sendPacket(new PlayerInputC2SPacket(new Input(false, false, false, false, false, context.shouldSneak, false)));
+        player.networkHandler.sendPacket(new PlayerInputC2SPacket(new PlayerInput(false, false, false, false, false, context.shouldSneak, false)));
     }
 
     @Override
