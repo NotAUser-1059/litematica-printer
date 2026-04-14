@@ -50,7 +50,7 @@ public class Printer {
         List<BlockPos> positions = getReachablePositions();
         findBlock:
         for (BlockPos position : positions) {
-            SchematicBlockState state = new SchematicBlockState(player.getWorld(), worldSchematic, position);
+            SchematicBlockState state = new SchematicBlockState(player.getEntityWorld(), worldSchematic, position);
             if (state.targetState.equals(state.currentState) || state.targetState.isAir()) continue;
 
             Guide[] guides = interactionGuides.getInteractionGuides(state);
@@ -78,13 +78,16 @@ public class Printer {
 
         ArrayList<BlockPos> positions = new ArrayList<>();
 
+        Vec3d playerPos = new Vec3d(player.getX(), player.getY(), player.getZ());
+        Vec3d playerEyePos = playerPos.add(0, player.getEyeHeight(player.getPose()), 0);
+
         for (int y = -maxReach; y < maxReach + 1; y++) {
             for (int x = -maxReach; x < maxReach + 1; x++) {
                 for (int z = -maxReach; z < maxReach + 1; z++) {
                     BlockPos blockPos = player.getBlockPos().north(x).west(z).up(y);
 
                     if (!DataManager.getRenderLayerRange().isPositionWithinRange(blockPos)) continue;
-                    if (this.player.getPos().add(0, this.player.getEyeHeight(this.player.getPose()), 0).squaredDistanceTo(Vec3d.ofCenter(blockPos)) > maxReachSquared) {
+                    if (playerEyePos.squaredDistanceTo(Vec3d.ofCenter(blockPos)) > maxReachSquared) {
                         continue;
                     }
 
@@ -96,11 +99,11 @@ public class Printer {
         return positions.stream()
                 .filter(p -> {
                     Vec3d vec = Vec3d.ofCenter(p);
-                    return this.player.getPos().squaredDistanceTo(vec) > 1 && this.player.getPos().add(0, this.player.getEyeHeight(this.player.getPose()), 0).squaredDistanceTo(vec) > 1;
+                    return playerPos.squaredDistanceTo(vec) > 1 && playerEyePos.squaredDistanceTo(vec) > 1;
                 })
                 .sorted((a, b) -> {
-                    double aDistance = this.player.getPos().squaredDistanceTo(Vec3d.ofCenter(a));
-                    double bDistance = this.player.getPos().squaredDistanceTo(Vec3d.ofCenter(b));
+                    double aDistance = playerPos.squaredDistanceTo(Vec3d.ofCenter(a));
+                    double bDistance = playerPos.squaredDistanceTo(Vec3d.ofCenter(b));
                     return Double.compare(aDistance, bDistance);
                 }).toList();
     }
