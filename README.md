@@ -64,6 +64,8 @@ such as automatic excavation or correcting incorrectly placed blocks are out of 
 
 ## Building and Contributing
 
+> Build requirement: use Java 21 (for example: `JAVA_HOME=/path/to/jdk-21 ./gradlew v1_21:build`).
+
 Each Minecraft version has its own submodule, that has the default fabric mod development tasks
 and contains the version-specific code. To reduce the amount of work I have to do to make
 it work for multiple Minecraft versions, I created this hacky gradle script that copies the
@@ -72,7 +74,7 @@ except `implementation/` folder, which should therefore be the only places conta
 version specific code.
 
 If you want to make changes to the mod, I would recommend you to first implement them for
-the latest Minecraft version (1.19), and then running the `syncImplementations` gradle task,
+the latest Minecraft version (1.21, submodule `v1_21`), and then running the `syncImplementations` gradle task,
 found **in the same subproject** as your changes, to copy the common code of that submodule
 to the other implementations. After that you will only have to write / copy manually
 the version-specific code (found in the `implementation` folder) to the other versions and do some testing to ensure
@@ -87,9 +89,9 @@ Minecraft versions that doesn't involve multiple git branches or hacky gradle sc
 
 Useful gradle tasks:
 
-- `[v1_19/v1_18/v1_17]:syncImplementations`
-    - Copy over common code to other implementations
-- `buildAll`
-    - Build all implementations and copy their jars to `build/` directory for easy distribution.
-- `[v1_19/v1_18/v1_17]:runClient`
-    - Start the target Minecraft version
+- `v1_21:syncImplementations`
+    - Copy common code from `v1_21` to the other version implementations
+- `v1_21:build`
+    - Build the prioritized latest implementation
+- `v1_21:runClient`
+    - Start the 1.21 development client

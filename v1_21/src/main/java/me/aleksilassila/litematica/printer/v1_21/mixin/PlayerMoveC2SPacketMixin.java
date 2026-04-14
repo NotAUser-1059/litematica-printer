@@ -11,7 +11,7 @@ import me.aleksilassila.litematica.printer.v1_21.actions.PrepareAction;
 
 @Mixin(PlayerMoveC2SPacket.class)
 public class PlayerMoveC2SPacketMixin {
-    @ModifyVariable(method = "<init>(DDDFFZZZ)V", at = @At("HEAD"), ordinal = 0)
+    @ModifyVariable(method = "<init>(DDDFFZZZZ)V", at = @At("HEAD"), ordinal = 0)
     private static float modifyLookYaw(float yaw) {
         Printer printer = LitematicaMixinMod.printer;
         if (printer == null) return yaw;
@@ -23,7 +23,7 @@ public class PlayerMoveC2SPacketMixin {
         } else return yaw;
     }
 
-    @ModifyVariable(method = "<init>(DDDFFZZZ)V", at = @At("HEAD"), ordinal = 1)
+    @ModifyVariable(method = "<init>(DDDFFZZZZ)V", at = @At("HEAD"), ordinal = 1)
     private static float modifyLookPitch(float pitch) {
         Printer printer = LitematicaMixinMod.printer;
         if (printer == null) return pitch;

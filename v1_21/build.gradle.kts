@@ -1,10 +1,13 @@
 plugins {
-    id("fabric-loom").version("1.6-SNAPSHOT")
+    id("fabric-loom").version("1.14-SNAPSHOT")
     id("maven-publish")
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_21
-java.targetCompatibility = JavaVersion.VERSION_21
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 val archives_base_name: String by project
 val minecraft_version: String by project
@@ -24,15 +27,17 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${loader_version}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
-    // Litematica and Malilib dependencies from https://github.com/sakura-ryoko/litematica/tree/pre-rewrite/fabric/1.21
-	modImplementation("com.github.sakura-ryoko:malilib:${malilib_id}")
-	modImplementation("com.github.sakura-ryoko:litematica:${litematica_version}")
+    // Litematica and Malilib dependencies from Modrinth
+	modImplementation("maven.modrinth:malilib:${malilib_id}")
+	modImplementation("maven.modrinth:litematica:${litematica_version}")
 }
 
 repositories {
+    maven("https://maven.fabricmc.net/")
     maven("https://masa.dy.fi/maven")
     maven("https://www.cursemaven.com")
-	maven("https://jitpack.io")
+    maven("https://jitpack.io")
+    maven("https://api.modrinth.com/maven")
 }
 
 // Process resources

@@ -72,6 +72,17 @@ goto fail
 
 set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
+@rem Gradle 8.x in this project is not compatible with Java 25+ for script compilation.
+@rem Require Java 21 for wrapper runtime.
+for /f "tokens=3 delims= " %%v in ('"%JAVA_EXE%" -version 2^>^&1 ^| findstr /i "version"') do set JAVA_VERSION_RAW=%%~v
+set JAVA_VERSION_RAW=%JAVA_VERSION_RAW:"=%
+for /f "tokens=1 delims=." %%m in ("%JAVA_VERSION_RAW%") do set JAVA_MAJOR=%%m
+if %JAVA_MAJOR% GTR 21 (
+  echo. 1^>^&2
+  echo ERROR: Detected Java %JAVA_MAJOR%. This project must run Gradle with Java 21. 1^>^&2
+  echo Please set JAVA_HOME to a Java 21 installation and rerun. 1^>^&2
+  goto fail
+)
 
 @rem Execute Gradle
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*

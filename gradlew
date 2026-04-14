@@ -143,6 +143,17 @@ location of your Java installation."
     fi
 fi
 
+# Gradle 8.x in this project is not compatible with Java 25+ for script compilation.
+# Require Java 21 for the wrapper runtime to avoid "Unsupported class file major version" failures.
+JAVA_VERSION_LINE=$("$JAVACMD" -version 2>&1 | sed -n '1p')
+JAVA_MAJOR=$(printf '%s' "$JAVA_VERSION_LINE" | sed -E 's/.*version "([0-9]+).*/\1/')
+if [ -n "$JAVA_MAJOR" ] && [ "$JAVA_MAJOR" -gt 21 ] 2>/dev/null; then
+    die "ERROR: Detected Java ${JAVA_MAJOR}. This project must run Gradle with Java 21.
+
+Please set JAVA_HOME to a Java 21 installation and rerun, for example:
+  JAVA_HOME=/path/to/jdk-21 ./gradlew v1_21:build"
+fi
+
 # Increase the maximum file descriptors if we can.
 if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
     case $MAX_FD in #(
