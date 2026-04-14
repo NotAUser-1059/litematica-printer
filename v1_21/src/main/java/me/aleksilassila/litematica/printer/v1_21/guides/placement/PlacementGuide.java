@@ -36,7 +36,7 @@ abstract public class PlacementGuide extends Guide {
     }
 
     protected ItemStack getBlockItem(BlockState state) {
-        return state.getBlock().getPickStack(this.state.world, this.state.blockPos, state);
+        return state.getBlock().getPickStack(this.state.world, this.state.blockPos, state, true);
     }
 
     protected Optional<Block> getRequiredItemAsBlock(ClientPlayerEntity player) {
