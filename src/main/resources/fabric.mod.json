@@ -12,7 +12,7 @@
     "sources": "https://github.com/aleksilassila/litematica-printer"
   },
   "license": "CC0-1.0",
-  "icon": "assets/litematica-printer/icon.png",
+  "icon": "assets/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
