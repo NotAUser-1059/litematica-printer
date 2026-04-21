@@ -1,8 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.aleksilassila.litematica.printer.implementation.mixin",
+  "package": "me.aleksilassila.litematica.printer.v1_21.implementation.mixin",
   "compatibilityLevel": "JAVA_21",
+  "mixins": [
+  ],
   "client": [
     "MixinClientPlayerEntity"
   ],

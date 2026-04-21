@@ -47,9 +47,7 @@ Currently, the following features are still broken or missing:
 
 Useful gradle tasks:
 
-- `v1_21:syncImplementations`
-    - Copy common code from `v1_21` to the other version implementations
 - `build`
-    - Build the prioritized latest implementation
-- `v1_21:runClient`
+    - Build the mod
+- `runClient`
     - Start the 1.21 development client
