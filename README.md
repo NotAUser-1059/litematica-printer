@@ -39,7 +39,6 @@ Currently, the following features are still broken or missing:
 - Placing liquids (printing **in** liquids works though)
 - Current algorithm for placing rails isn't perfect,
   sometimes it can't place all the rails (to avoid placing anything incorrectly).
-- Legit mode? (for anticheats)
 
 ## Building and Contributing
 
