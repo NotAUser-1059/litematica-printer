@@ -20,7 +20,7 @@ This fork has used AI for a variety of things to speed up development, but every
 If you have issues with the printer, **do not** bother the original creator of
 Litematica (nor Litematica Printer) with them. Contact me instead. Feature requests or bugs can
 be reported via [GitHub issues](https://github.com/NotAUser-1059/litematica-printer/issues),
-or in my Discord DMs (\_notauser\_). Please look for duplicate issues and feature request in [issues](https://github.com/NotAUser-1059/litematica-printer/issues) before creating a new one.
+or in my Discord DMs (\_notauser\_). Please look for duplicate issues and feature requests in [issues](https://github.com/NotAUser-1059/litematica-printer/issues) before creating a new one.
 
 Before creating an issue, make sure you are using the latest version of the mod.
 To make fixing bugs easier, include the following information in your issue:
